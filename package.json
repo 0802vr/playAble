@@ -1,0 +1,29 @@
+{
+  "name": "runner-game-phaser",
+  "version": "1.0.0",
+  "description": "Runner game with Phaser 3 and TypeScript",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "build:legacy": "node build.js"
+  },
+  "keywords": [
+    "phaser",
+    "game",
+    "runner",
+    "typescript"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "phaser": "^3.90.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.9",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.1",
+    "vite-plugin-singlefile": "^2.3.0"
+  }
+}

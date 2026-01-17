@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Runner Game - Playoff (Phaser)</title>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.70.0/dist/phaser.min.js"></script>
+    <!-- BUILD:CSS -->
+    <!-- /BUILD:CSS -->
+</head>
+<body>
+    <div id="game-container">
+        <div class="ui-overlay">
+            <div class="hearts-container">
+                <svg class="heart" id="heart1" viewBox="0 0 100 100">
+                    <path d="M50,85 C50,85 10,60 10,35 C10,20 20,10 30,10 C40,10 45,15 50,25 C55,15 60,10 70,10 C80,10 90,20 90,35 C90,60 50,85 50,85 Z" fill="#FF0000"/>
+                </svg>
+                <svg class="heart" id="heart2" viewBox="0 0 100 100">
+                    <path d="M50,85 C50,85 10,60 10,35 C10,20 20,10 30,10 C40,10 45,15 50,25 C55,15 60,10 70,10 C80,10 90,20 90,35 C90,60 50,85 50,85 Z" fill="#FF0000"/>
+                </svg>
+                <svg class="heart" id="heart3" viewBox="0 0 100 100">
+                    <path d="M50,85 C50,85 10,60 10,35 C10,20 20,10 30,10 C40,10 45,15 50,25 C55,15 60,10 70,10 C80,10 90,20 90,35 C90,60 50,85 50,85 Z" fill="#FF0000"/>
+                </svg>
+            </div>
+
+            <div class="score-display">
+                <span id="scoreValue">0</span>
+            </div>
+
+            <div class="bottom-banner">
+                <button class="download-btn" onclick="window.open('https://example.com/download', '_blank')">DOWNLOAD</button>
+            </div>
+        </div>
+
+        <!-- Win Modal -->
+        <div id="win-modal" class="game-modal hidden">
+            <div class="modal-overlay"></div>
+            <div class="modal-content">
+                <img src="assets/win.png" alt="Win" class="modal-image win-image rotating">
+                <div class="modal-score">Score: <span id="win-score">0</span></div>
+                <div class="modal-buttons">
+                    <button class="modal-btn play-again-btn" onclick="location.reload()">PLAY AGAIN</button>
+                    <button class="modal-btn download-modal-btn" onclick="window.open('https://example.com/download', '_blank')">DOWNLOAD GAME</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fail Modal -->
+        <div id="fail-modal" class="game-modal hidden">
+            <div class="modal-overlay"></div>
+            <div class="modal-content">
+                <img src="assets/fail.png" alt="Fail" class="modal-image fail-image">
+                <div class="modal-score">Score: <span id="fail-score">0</span></div>
+                <div class="modal-buttons">
+                    <button class="modal-btn play-again-btn" onclick="location.reload()">PLAY AGAIN</button>
+                    <button class="modal-btn download-modal-btn" onclick="window.open('https://example.com/download', '_blank')">DOWNLOAD GAME</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BUILD:JS -->
+    <!-- /BUILD:JS -->
+</body>
+</html>

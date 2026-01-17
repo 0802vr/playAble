@@ -1,0 +1,241 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: url('/cursor.png') 16 0, auto !important;
+}
+
+/* Hide UI during fade-in */
+.ui-overlay {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.ui-overlay.visible {
+    opacity: 1;
+}
+
+body {
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+}
+
+#game-container {
+    position: relative;
+    box-shadow: 0 0 30px rgba(255,255,255,0.3);
+}
+
+/* UI Overlay */
+.ui-overlay {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    height: 600px;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.hearts-container {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.heart {
+    width: 40px;
+    height: 40px;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+    transition: all 0.3s;
+}
+
+.heart.lost {
+    opacity: 0.3;
+    filter: grayscale(100%) brightness(0.5);
+}
+
+.score-display {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    width: 200px;
+    height: 60px;
+    background: url('/counter.png') center/contain no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 1px 1px 2px #000;
+}
+
+/* Bottom Banner */
+.bottom-banner {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: url('/bottom-bg.webp') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 20px;
+    pointer-events: auto;
+}
+
+.download-btn {
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 25px;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.download-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.6);
+    background: linear-gradient(135deg, #5cbf60 0%, #4CAF50 100%);
+}
+
+.download-btn:active {
+    transform: scale(0.95);
+}
+
+/* ==================== */
+/* Game Modals (Win/Fail) */
+/* ==================== */
+
+.game-modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 800px;
+    height: 600px;
+    z-index: 2000;
+    pointer-events: auto;
+}
+
+.game-modal.hidden {
+    display: none;
+}
+
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+}
+
+.modal-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+/* Modal Images */
+.modal-image {
+    position: absolute;
+    pointer-events: none;
+}
+
+.win-image {
+    width: 800px;
+    height: 800px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}
+
+.win-image.rotating {
+    animation: rotate 4s linear infinite;
+}
+
+@keyframes rotate {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.fail-image {
+    width: 400px;
+    height: 400px;
+    z-index: 1;
+    position: relative;
+}
+
+/* Modal Score */
+.modal-score {
+    font-size: 36px;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 20px;
+    z-index: 2;
+}
+
+/* Modal Buttons */
+.modal-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 2;
+}
+
+.modal-btn {
+    width: 300px;
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    transition: all 0.15s ease;
+}
+
+.modal-btn:hover {
+    transform: scale(1.1);
+}
+
+.modal-btn:active {
+    transform: scale(0.95);
+}
+
+.play-again-btn {
+    background: linear-gradient(135deg, #FFA500 0%, #FF8C00 100%);
+    box-shadow: 0 4px 15px rgba(255, 165, 0, 0.4);
+}
+
+.play-again-btn:hover {
+    box-shadow: 0 6px 20px rgba(255, 165, 0, 0.6);
+}
+
+.download-modal-btn {
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+}
+
+.download-modal-btn:hover {
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.6);
+}

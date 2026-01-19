@@ -4,11 +4,11 @@ import { viteSingleFile } from 'vite-plugin-singlefile';
 
 export default defineConfig({
   root: '.',
-  base: './',
+  base: '/playAble/',
   publicDir: 'assets',
   build: {
     outDir: 'dist',
-    assetsDir: 'assets',
+    assetsDir: '',
     assetsInlineLimit: 100000000, // Inline all assets
     cssCodeSplit: false,
     rollupOptions: {

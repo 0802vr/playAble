@@ -65,7 +65,7 @@
         {
          "columns":5,
          "firstgid":287,
-         "image":"assets\/tree.png",
+         "image":"tree.png",
          "imageheight":382,
          "imagewidth":338,
          "margin":0,
@@ -78,7 +78,7 @@
         {
          "columns":2,
          "firstgid":312,
-         "image":"assets\/lamp.png",
+         "image":"lamp.png",
          "imageheight":357,
          "imagewidth":152,
          "margin":0,
@@ -91,7 +91,7 @@
         {
          "columns":7,
          "firstgid":322,
-         "image":"assets\/tree2.png",
+         "image":"tree2.png",
          "imageheight":383,
          "imagewidth":483,
          "margin":0,

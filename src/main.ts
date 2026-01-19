@@ -97,37 +97,36 @@ const config: Phaser.Types.Core.GameConfig = {
 const game = new Phaser.Game(config);
 
 /**
- * Preload game assets
- */
+ * Preload game  */
 function preload(this: Phaser.Scene): void {
   this.load.tilemapTiledJSON('map', 'map.json');
-  this.load.image('background', 'assets/background.png');
-  this.load.image('tree', 'assets/tree.png');
-  this.load.image('lamp', 'assets/lamp.png');
-  this.load.image('tree2', 'assets/tree2.png');
+  this.load.image('background', 'background.png');
+  this.load.image('tree', 'tree.png');
+  this.load.image('lamp', 'lamp.png');
+  this.load.image('tree2', 'tree2.png');
 
-  this.load.spritesheet('player', 'assets/player2_centered.png', {
+  this.load.spritesheet('player', 'player2_centered.png', {
     frameWidth: 256,
     frameHeight: 256
   });
 
-  this.load.spritesheet('player_run_sheet', 'assets/girl_run.png', {
+  this.load.spritesheet('player_run_sheet', 'girl_run.png', {
     frameWidth: 256,
     frameHeight: 256
   });
 
-  this.load.image('cone', 'assets/cone.webp');
-  this.load.image('money', 'assets/money.webp');
-  this.load.image('money2', 'assets/money_2.png');
-  this.load.image('winScreen', 'assets/win.png');
-  this.load.image('failScreen', 'assets/fail.png');
-  this.load.image('bottomBg', 'assets/bottom-bg.webp');
-  this.load.image('cursor', 'assets/cursor.png');
-  this.load.image('counter', 'assets/counter.png');
+  this.load.image('cone', 'cone.webp');
+  this.load.image('money', 'money.webp');
+  this.load.image('money2', 'money_2.png');
+  this.load.image('winScreen', 'win.png');
+  this.load.image('failScreen', 'fail.png');
+  this.load.image('bottomBg', 'bottom-bg.webp');
+  this.load.image('cursor', 'cursor.png');
+  this.load.image('counter', 'counter.png');
 
-  this.load.audio('bgMusic', 'assets/game-music.mp3');
+  this.load.audio('bgMusic', 'game-music.mp3');
 
-  this.load.spritesheet('enemy_run_sheet', 'assets/enemy_run.png', {
+  this.load.spritesheet('enemy_run_sheet', 'enemy_run.png', {
     frameWidth: 2430 / 9,
     frameHeight: 339
   });
@@ -230,7 +229,7 @@ function create(this: ExtendedScene): void {
   this.input.on('pointerdown', handleClick, this);
 
   // Set custom cursor
-  this.input.setDefaultCursor('url(assets/cursor.png) 16 0, auto');
+  this.input.setDefaultCursor('url(cursor.png) 16 0, auto');
 
   // Fade in effect
   this.cameras.main.fadeIn(800, 0, 0, 0);

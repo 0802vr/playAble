@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.claude/
+DOCUMENTATION.md
+build.js
+dev-server.js
+*.py
+*.tiled-project
+*.tiled-session
+.DS_Store

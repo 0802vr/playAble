@@ -102,7 +102,7 @@ function spawnFirstEnemy(scene: Phaser.Scene): void {
  */
 export function startEnemyTimer(scene: Phaser.Scene): void {
   spawnTimer = scene.time.addEvent({
-    delay: 2000,
+    delay: 3000,
     callback: () => spawnEnemy(scene),
     loop: true
   });
@@ -151,9 +151,9 @@ export function updateEnemies(): void {
 
   enemies.children.entries.forEach((enemy) => {
     const e = enemy as Phaser.Physics.Arcade.Sprite;
-    e.x -= speed / 60;
+    e.x -= speed / 100;
 
-    if (e.x < playerSprite.x - 200) {
+    if (e.x < playerSprite.x - 400) {
       e.destroy();
     }
   });

@@ -29,13 +29,13 @@ import {
  */
 
 /** X position of finish line */
-const FINISH_X = 6200;
+const FINISH_X = 6000;
 
 // Game state variables
 let platforms: Phaser.Physics.Arcade.StaticGroup;
 let gameStarted = false;
 let gameOver = false;
-let gameSpeed = 50;
+let gameSpeed = 60;
 let startText: Phaser.GameObjects.Text;
 let tiledMap: Phaser.Tilemaps.Tilemap;
 let grownLayer: Phaser.Tilemaps.TilemapLayer | null;
@@ -71,13 +71,14 @@ setObjectRefs(
   endGame,
   flashRed
 );
-
+ 
 /** Phaser game configuration */
 const config: Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO,
-  width: 800,
-  height: 600,
   parent: 'game-container',
+  disableContextMenu: true,
+  /* width: 800,
+  height: 600, */
   physics: {
     default: 'arcade',
     arcade: {
@@ -90,11 +91,22 @@ const config: Phaser.Types.Core.GameConfig = {
     create: create,
     update: update
   },
+  scale: {
+    mode: Phaser.Scale.ENVELOP,
+    autoCenter: Phaser.Scale.CENTER_BOTH,
+    expandParent: true,
+    width: 800,
+    height: 600,  
+    fullscreenTarget: 'game-container',
+    
+  },
   backgroundColor: '#000000'
 };
 
-/** Phaser game instance */
 const game = new Phaser.Game(config);
+ 
+
+
 
 /**
  * Preload game  */
@@ -216,7 +228,7 @@ function create(this: ExtendedScene): void {
 
   // Setup camera
   this.cameras.main.startFollow(playerSprite, true, 0.1, 0);
-  this.cameras.main.setFollowOffset(-250, 0);
+  this.cameras.main.setFollowOffset(-80, 0);
   this.cameras.main.setBounds(0, 0, 6400, 600);
 
   // Create finish line and start screen
@@ -269,7 +281,7 @@ function update(this: ExtendedScene): void {
 
   // Update game
   updatePlayerAnimation();
-  playerSprite.x += gameSpeed / 60;
+  playerSprite.x += gameSpeed / 100;
 
   // Check for win condition
   if (playerSprite.x >= FINISH_X + 50) {
@@ -282,7 +294,7 @@ function update(this: ExtendedScene): void {
 
   // Speed increase based on coins
   if (gameStore.getCoins() > 0 && gameStore.getCoins() % 500 === 0 && gameSpeed < 300) {
-    gameSpeed += 5;
+    gameSpeed += 10;
   }
 }
 
@@ -327,7 +339,7 @@ function winGame(): void {
  */
 function createStartScreen(scene: ExtendedScene): void {
   startText = scene.add.text(400, 250, 'Tap to start!\n\nCollect coins and avoid enemies', {
-    fontSize: '36px',
+    fontSize: '1.5em',
     fontFamily: 'Arial',
     color: '#ffffff',
     align: 'center',
@@ -446,11 +458,40 @@ function showEndScreen(): void {
     const winScore = document.getElementById('win-score');
     if (winScore) winScore.textContent = String(state.coins);
     if (winModal) winModal.classList.remove('hidden');
-  } else {
+  } else { 
+    
     const failModal = document.getElementById('fail-modal');
     const failScore = document.getElementById('fail-score');
+    const failImage = failModal?.querySelector('.fail-image');
+    const visibleBoxes = failModal?.querySelectorAll('.visible_box');
+
     if (failScore) failScore.textContent = String(state.coins);
+
+    // Убираем hidden и показываем модал
     if (failModal) failModal.classList.remove('hidden');
+
+    // Убеждаемся, что картинка видима, а visible_box скрыты
+    if (failImage) {
+        failImage.classList.remove('hidden');
+        (failImage as HTMLImageElement).style.opacity = '1';
+    }
+    if (visibleBoxes) {
+        visibleBoxes.forEach(box => box.classList.remove('visible'));
+    }
+
+    if (failModal) failModal.classList.add('animation');
+
+    // Через 400ms скрываем картинку и показываем visible_box
+    setTimeout(() => {
+        if (failImage) {
+            failImage.classList.add('hidden');
+        }
+        if (visibleBoxes) {
+            visibleBoxes.forEach(box => box.classList.add('visible'));
+        }
+    }, 400);
+
+     
   }
 }
 
@@ -490,7 +531,7 @@ function showTutorial(scene: ExtendedScene, firstEnemy: ExtendedSprite): void {
 
   // Tutorial text
   const tutorialText = scene.add.text(400, 200, 'Jump over enemies\nand obstacles!', {
-    fontSize: '36px',
+    fontSize: '1.5rem',
     fontFamily: 'Arial',
     color: '#ffffff',
     align: 'center',
@@ -504,7 +545,7 @@ function showTutorial(scene: ExtendedScene, firstEnemy: ExtendedSprite): void {
 
   // Tap instruction
   const tapText = scene.add.text(400, 300, 'Tap to jump!', {
-    fontSize: '28px',
+    fontSize: '1.5rem',
     fontFamily: 'Arial',
     color: '#FFD700',
     align: 'center',
@@ -607,7 +648,7 @@ function createFinishLine(scene: Phaser.Scene): void {
   }
 
   const finishText = scene.add.text(x + width / 2, y - 30, 'FINISH', {
-    fontSize: '24px',
+    fontSize: '1.5rem',
     fontFamily: 'Arial',
     color: '#FFD700',
     fontStyle: 'bold',

@@ -25,6 +25,7 @@ body {
 }
 
 #game-container {
+    
     position: relative;
     box-shadow: 0 0 30px rgba(255,255,255,0.3);
 }
@@ -35,8 +36,8 @@ body {
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 800px;
-    height: 600px;
+    width: 100%;
+    height: 100%;
     pointer-events: none;
     z-index: 1000;
 }
@@ -85,11 +86,10 @@ body {
     left: 0;
     width: 100%;
     height: 80px;
-    background: url('/bottom-bg.webp') center/cover no-repeat;
+    background: url('/bottom-bg.webp') center/100% no-repeat;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    padding-right: 20px;
+    justify-content: flex-end; 
     pointer-events: auto;
 }
 
@@ -105,6 +105,7 @@ body {
     transition: all 0.3s ease;
     text-transform: uppercase;
     letter-spacing: 2px;
+    margin-right: 20px;
 }
 
 .download-btn:hover {
@@ -125,8 +126,8 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    width: 800px;
-    height: 600px;
+    width: 100%;
+    height: 100%;
     z-index: 2000;
     pointer-events: auto;
 }
@@ -178,14 +179,24 @@ body {
     from { transform: translate(-50%, -50%) rotate(0deg); }
     to { transform: translate(-50%, -50%) rotate(360deg); }
 }
+  
 
+/* Картинка с плавным исчезновением */
 .fail-image {
-    width: 400px;
-    height: 400px;
+    min-width: 250px;
+    min-height: 250px;
     z-index: 1;
     position: relative;
+    transition: opacity 0.2s ease;
+    opacity: 1;
 }
 
+.fail-image.hidden {
+    display: none;
+    pointer-events: none;
+}
+ 
+ 
 /* Modal Score */
 .modal-score {
     font-size: 36px;
@@ -238,4 +249,18 @@ body {
 
 .download-modal-btn:hover {
     box-shadow: 0 6px 20px rgba(76, 175, 80, 0.6);
+}
+
+
+.visible_box {
+    display: none;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+}
+
+/* Показываем visible_box когда добавляем класс visible */
+.visible_box.visible {
+    display: flex;
+    opacity: 1;
+    pointer-events: auto;
 }

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Runner Game - Playoff (Phaser)</title>
     <link rel="stylesheet" href="./src/styles.css">
 </head>
@@ -48,8 +49,8 @@
             <div class="modal-overlay"></div>
             <div class="modal-content">
                 <img src="./assets/fail.png" alt="Fail" class="modal-image fail-image">
-                <div class="modal-score">Score: <span id="fail-score">0</span></div>
-                <div class="modal-buttons">
+                <div class="modal-score visible_box">Score: <span id="fail-score">0</span></div>
+                <div class="modal-buttons visible_box">
                     <button class="modal-btn play-again-btn" onclick="location.reload()">PLAY AGAIN</button>
                     <button class="modal-btn download-modal-btn" onclick="window.open('https://example.com/download', '_blank')">DOWNLOAD GAME</button>
                 </div>
@@ -58,5 +59,6 @@
     </div>
 
     <script type="module" src="./src/main.ts"></script>
+   
 </body>
 </html>

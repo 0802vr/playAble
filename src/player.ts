@@ -15,7 +15,7 @@ let tutorialShownRef: () => boolean;
  * @returns player sprite
  */
 export function initPlayer(scene: Phaser.Scene): Phaser.Physics.Arcade.Sprite {
-  player = scene.physics.add.sprite(150, 320, 'player');
+  player = scene.physics.add.sprite(350, 320, 'player');
   player.setCollideWorldBounds(true);
   player.setDisplaySize(150, 150);
 
